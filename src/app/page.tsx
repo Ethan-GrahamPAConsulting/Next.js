@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import styles from "./page.module.css";
-import BookingCard from "./components/BookingCard";
+import BaseModal from "./components/BaseModal";
+import BookingsTable, {
+  type BookingTableRow,
+} from "./components/BookingsTable";
 import RegistrationForm, {
   type NewDeskBooking,
 } from "./components/RegistrationForm";
@@ -13,6 +16,7 @@ type DeskBooking = NewDeskBooking & {
 };
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [bookings, setBookings] = useState<DeskBooking[]>([
     {
       id: 1,
@@ -46,6 +50,15 @@ export default function Home() {
       booking.active ? "active" : "inactive",
     ].some((value) => value.toLowerCase().includes(normalizedSearch)),
   );
+  const visibleBookingRows: BookingTableRow[] = visibleBookings.map(
+    (booking) => ({
+      id: booking.id,
+      desk: booking.desk,
+      floor: booking.floor,
+      date: booking.date,
+      status: booking.active ? "Active" : "Inactive",
+    }),
+  );
 
   function handleRegister(booking: NewDeskBooking) {
     setBookings((currentBookings) => [
@@ -59,44 +72,94 @@ export default function Home() {
         active: true,
       },
     ]);
+    setIsModalOpen(false);
   }
 
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <header className={styles.header}>
-          <p className={styles.eyebrow}>COSPACE / BOOKINGS</p>
-          <h1>Desk bookings</h1>
-          <p className={styles.subtitle}>Your workspace reservations</p>
-        </header>
-        <RegistrationForm onRegister={handleRegister} />
-        <label className={styles.searchLabel}>
-          Search bookings
-          <input
-            className={styles.searchInput}
-            type="search"
-            placeholder="Search by desk, floor, date, or status"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.currentTarget.value)}
-          />
-        </label>
-        <section className={styles.bookingList} aria-label="Desk bookings">
-          {visibleBookings.map((booking) => (
-            <BookingCard
-              key={booking.id}
-              desk={booking.desk}
-              floor={booking.floor}
-              date={booking.date}
-              active={booking.active}
-            />
-          ))}
-        </section>
-        {visibleBookings.length === 0 && (
-          <p className={styles.emptyState} role="status">
-            No bookings match “{searchTerm}”.
-          </p>
-        )}
+      <aside className={styles.sidebar}>
+        <a className={styles.brand} href="#overview">
+          <span className={styles.brandMark} aria-hidden="true">
+            C
+          </span>
+          <span className={styles.brandCopy}>
+            <strong>CoSpace</strong>
+            <small>WORKSPACE</small>
+          </span>
+        </a>
+        <nav className={styles.navigation} aria-label="Main navigation">
+          <a className={styles.navLink} href="#overview">
+            Overview
+          </a>
+          <a
+            className={styles.navLink}
+            href="#bookings"
+            aria-current="page"
+          >
+            Bookings
+          </a>
+        </nav>
+        <p className={styles.sidebarFooter}>Your place to get things done.</p>
+      </aside>
+
+      <main className={styles.main} id="overview">
+        <div className={styles.dashboard}>
+          <header className={styles.header}>
+            <div>
+              <p className={styles.eyebrow}>WORKSPACE / BOOKINGS</p>
+              <h1>Desk bookings</h1>
+              <p className={styles.subtitle}>Your workspace reservations</p>
+            </div>
+            <button
+              className={styles.primaryButton}
+              onClick={() => setIsModalOpen(true)}
+              type="button"
+            >
+              New booking
+            </button>
+          </header>
+
+          <section
+            className={styles.bookingSection}
+            id="bookings"
+            aria-labelledby="bookings-heading"
+          >
+            <div className={styles.sectionHeader}>
+              <div>
+                <h2 id="bookings-heading">All bookings</h2>
+                <p>{visibleBookings.length} reservations</p>
+              </div>
+              <label className={styles.searchLabel}>
+                <span>Search bookings</span>
+                <input
+                  className={styles.searchInput}
+                  type="search"
+                  placeholder="Desk, floor, date, or status"
+                  value={searchTerm}
+                  onChange={(event) =>
+                    setSearchTerm(event.currentTarget.value)
+                  }
+                />
+              </label>
+            </div>
+            <div className={styles.tableFrame}>
+              <BookingsTable bookings={visibleBookingRows} />
+            </div>
+            {visibleBookings.length === 0 && (
+              <p className={styles.emptyState} role="status">
+                No bookings match “{searchTerm}”.
+              </p>
+            )}
+          </section>
+        </div>
       </main>
+      <BaseModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add a desk booking"
+      >
+        <RegistrationForm onRegister={handleRegister} />
+      </BaseModal>
     </div>
   );
 }

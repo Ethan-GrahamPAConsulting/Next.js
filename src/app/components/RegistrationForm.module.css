@@ -1,13 +1,10 @@
 .form {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  grid-template-columns: 1fr;
   align-items: end;
-  gap: 12px;
-  margin-bottom: 32px;
-  padding: 16px;
-  border: 1px solid #d9e1df;
-  border-radius: 6px;
-  background: #ffffff;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 .field {
@@ -56,16 +53,4 @@
 .submit:focus-visible {
   outline: 2px solid #28785e;
   outline-offset: 2px;
-}
-
-@media (max-width: 760px) {
-  .form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 520px) {
-  .form {
-    grid-template-columns: 1fr;
-  }
 }
