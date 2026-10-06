@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./page.module.css";
+import Game from "./components/Game";
 import BookingCard from "./components/BookingCard";
 import RegistrationForm, {
   type NewDeskBooking,
@@ -84,6 +85,7 @@ export default function Home() {
           {visibleBookings.map((booking) => (
             <BookingCard
               key={booking.id}
+              id={booking.id}
               desk={booking.desk}
               floor={booking.floor}
               date={booking.date}
@@ -96,6 +98,9 @@ export default function Home() {
             No bookings match “{searchTerm}”.
           </p>
         )}
+        <br />
+                
+        <Game />
       </main>
     </div>
   );
