@@ -10,6 +10,7 @@ import RegistrationForm, {
   type DeskOption,
   type NewDeskBooking,
 } from "./components/RegistrationForm";
+import Game from "./components/Game";
 
 interface ColleagueOpportunity {
   id: number;
@@ -285,6 +286,10 @@ export default function Home() {
             )}
           </section>
         </div>
+        <div className={styles.dashboard}>
+          <Game />
+        </div>
+        
       </main>
       <BaseModal
         isOpen={isModalOpen}
