@@ -10,17 +10,17 @@ tests. It is not an automated test suite or a report that all checks have passed
 
 | Layer | Relevant source |
 | --- | --- |
-| Dashboard, loading, search, authentication, and optimistic booking state | [page.tsx](src/app/page.tsx) |
-| Shared Axios configuration | [api.ts](src/lib/api.ts) |
-| Dashboard booking form | [RegistrationForm.tsx](src/app/components/RegistrationForm.tsx) |
-| Standalone form validation and focus management | [CreateBookingForm.tsx](src/app/components/CreateBookingForm.tsx) |
-| Card, table, and modal UI | [BookingCard.tsx](src/app/components/BookingCard.tsx), [BookingsTable.tsx](src/app/components/BookingsTable.tsx), [BaseModal.tsx](src/app/components/BaseModal.tsx) |
-| Express application and error handling | [index.ts](../cospace-backend/backend-api/src/index.ts), [errorHandler.ts](../cospace-backend/backend-api/src/middleware/errorHandler.ts) |
-| Booking routes and authentication | [booking.routes.ts](../cospace-backend/backend-api/src/routes/booking.routes.ts), [requireAuth.ts](../cospace-backend/backend-api/src/middleware/requireAuth.ts) |
-| Authentication and desk routes | [auth.routes.ts](../cospace-backend/backend-api/src/routes/auth.routes.ts), [desk.routes.ts](../cospace-backend/backend-api/src/routes/desk.routes.ts) |
-| Booking request validation | [booking.schema.ts](../cospace-backend/backend-api/src/schemas/booking.schema.ts) |
-| Booking controller, service, and repository | [booking.controller.ts](../cospace-backend/backend-api/src/controllers/booking.controller.ts), [booking.service.ts](../cospace-backend/backend-api/src/services/booking.service.ts), [booking.repository.ts](../cospace-backend/backend-api/src/repositories/booking.repository.ts) |
-| Database models and constraints | [schema.prisma](../cospace-backend/backend-api/prisma/schema.prisma) |
+| Dashboard, loading, search, authentication, and optimistic booking state | [page.tsx](../src/app/page.tsx) |
+| Shared Axios configuration | [api.ts](../src/lib/api.ts) |
+| Dashboard booking form | [RegistrationForm.tsx](../src/app/components/RegistrationForm.tsx) |
+| Standalone form validation and focus management | [CreateBookingForm.tsx](../src/app/components/CreateBookingForm.tsx) |
+| Card, table, and modal UI | [BookingCard.tsx](../src/app/components/BookingCard.tsx), [BookingsTable.tsx](../src/app/components/BookingsTable.tsx), [BaseModal.tsx](../src/app/components/BaseModal.tsx) |
+| Express application and error handling | [index.ts](../../cospace-backend/backend-api/src/index.ts), [errorHandler.ts](../../cospace-backend/backend-api/src/middleware/errorHandler.ts) |
+| Booking routes and authentication | [booking.routes.ts](../../cospace-backend/backend-api/src/routes/booking.routes.ts), [requireAuth.ts](../../cospace-backend/backend-api/src/middleware/requireAuth.ts) |
+| Authentication and desk routes | [auth.routes.ts](../../cospace-backend/backend-api/src/routes/auth.routes.ts), [desk.routes.ts](../../cospace-backend/backend-api/src/routes/desk.routes.ts) |
+| Booking request validation | [booking.schema.ts](../../cospace-backend/backend-api/src/schemas/booking.schema.ts) |
+| Booking controller, service, and repository | [booking.controller.ts](../../cospace-backend/backend-api/src/controllers/booking.controller.ts), [booking.service.ts](../../cospace-backend/backend-api/src/services/booking.service.ts), [booking.repository.ts](../../cospace-backend/backend-api/src/repositories/booking.repository.ts) |
+| Database models and constraints | [schema.prisma](../../cospace-backend/backend-api/prisma/schema.prisma) |
 
 ### Confirmed Behavior and Rules
 
@@ -236,8 +236,8 @@ the whole system without becoming an automated E2E test.
   is unconfirmed.
 - The source declares database constraints, but this review does not establish
   that every deployed database has the matching migrations applied.
-- The inspected [frontend package scripts](package.json) have no test script.
-  The [backend test script](../cospace-backend/backend-api/package.json) is a
+- The inspected [frontend package scripts](../package.json) have no test script.
+  The [backend test script](../../cospace-backend/backend-api/package.json) is a
   placeholder that exits unsuccessfully. This does not prove that tests cannot
   exist elsewhere or run through another command.
 
