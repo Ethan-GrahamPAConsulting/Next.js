@@ -16,7 +16,8 @@
   font-weight: 600;
 }
 
-.field input {
+.field input,
+.field select {
   width: 100%;
   min-height: 42px;
   padding: 9px 10px;
@@ -31,6 +32,21 @@
 .field input:focus-visible {
   outline: 2px solid #28785e;
   outline-offset: 2px;
+}
+
+.field select:focus-visible {
+  outline: 2px solid #28785e;
+  outline-offset: 2px;
+}
+
+.field .invalidInput {
+  border-color: #b42318;
+}
+
+.errorMessage {
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .submit {
@@ -50,7 +66,18 @@
   background: #12523a;
 }
 
+.submit:disabled {
+  background: #71877e;
+  cursor: wait;
+}
+
 .submit:focus-visible {
   outline: 2px solid #28785e;
   outline-offset: 2px;
+}
+
+.successMessage {
+  color: #176648;
+  font-size: 13px;
+  font-weight: 600;
 }

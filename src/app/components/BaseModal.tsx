@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useId, useRef, type ReactNode } from "react";
 import styles from "./BaseModal.module.css";
 
 type BaseModalProps = {
@@ -17,6 +17,7 @@ export default function BaseModal({
   children,
 }: BaseModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -30,7 +31,7 @@ export default function BaseModal({
     <dialog
       ref={dialogRef}
       className={styles.dialog}
-      aria-labelledby="base-modal-title"
+      aria-labelledby={titleId}
       onCancel={(event) => {
         event.preventDefault();
         onClose();
@@ -41,7 +42,7 @@ export default function BaseModal({
     >
       <div className={styles.panel}>
         <header className={styles.header}>
-          <h2 id="base-modal-title">{title}</h2>
+          <h2 id={titleId}>{title}</h2>
           <button className={styles.closeButton} onClick={onClose} type="button">
             Close
           </button>

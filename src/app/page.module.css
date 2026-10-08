@@ -133,6 +133,13 @@
   font-size: 15px;
 }
 
+.headerActions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
 .primaryButton {
   min-height: 44px;
   flex: 0 0 auto;
@@ -145,6 +152,28 @@
   font-size: 14px;
   font-weight: 650;
   cursor: pointer;
+}
+
+.secondaryButton {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #b9c9c4;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #344b45;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  background: #f7faf8;
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid #28785e;
+  outline-offset: 3px;
 }
 
 .primaryButton:hover {
@@ -208,77 +237,25 @@
   outline-offset: 2px;
 }
 
-.tableFrame {
-  overflow-x: auto;
-  border: 1px solid #d9e1df;
-  border-radius: 6px;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgb(24 44 40 / 5%);
-}
-
-.tableFrame table {
-  width: 100%;
-  min-width: 600px;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.tableFrame caption {
-  padding: 14px 18px;
-  color: #344b45;
-  font-size: 13px;
-  font-weight: 650;
-  text-align: left;
-}
-
-.tableFrame th {
-  padding: 12px 18px;
-  border-block: 1px solid #e4ebe8;
-  background: #f7faf8;
-  color: #62736e;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.tableFrame td {
-  padding: 15px 18px;
-  border-bottom: 1px solid #edf1ef;
-  color: #344b45;
-  font-size: 14px;
-}
-
-.tableFrame tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-.tableFrame tbody tr:hover {
-  background: #f9fbfa;
-}
-
-.tableFrame [data-status] {
-  display: inline-flex;
-  min-height: 25px;
-  align-items: center;
-  padding: 0 9px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.tableFrame [data-status="active"] {
-  background: #e3f4ee;
-  color: #176648;
-}
-
-.tableFrame [data-status="inactive"] {
-  background: #edf0ef;
-  color: #596663;
+.bookingList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
 }
 
 .emptyState {
   margin: 20px 0 0;
   color: #5d6f6b;
+  font-size: 14px;
+}
+
+.errorAlert {
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border: 1px solid #d92d20;
+  border-radius: 4px;
+  background: #fff0ee;
+  color: #912018;
   font-size: 14px;
 }
 
@@ -370,6 +347,18 @@
 
   .primaryButton {
     width: 100%;
+  }
+
+  .headerActions {
+    width: 100%;
+  }
+
+  .headerActions .secondaryButton {
+    flex: 0 0 auto;
+  }
+
+  .headerActions .primaryButton {
+    flex: 1;
   }
 
   .sectionHeader {
