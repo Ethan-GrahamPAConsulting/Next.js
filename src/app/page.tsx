@@ -280,7 +280,7 @@ export default function Home() {
             ) : (
               <p className={styles.emptyState} role="status">
                 {searchTerm
-                  ? `No bookings match “${searchTerm}”.`
+                  ? `No bookings match “${searchTerm.trim()}”.`
                   : "No bookings yet."}
               </p>
             )}
